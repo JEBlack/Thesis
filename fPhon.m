@@ -8,6 +8,7 @@ function rep = fPhon(word)
 
 %   Coding scheme derived from Harm & Seidenburg 1999.
 
+%   New Comment for git purposes
 
     
     %local variables
