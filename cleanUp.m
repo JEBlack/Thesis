@@ -1,5 +1,5 @@
 function cleaned = cleanUp(words)
-%Cleans up list of words
+%Removes unwanted words from a table
 %   Deletes any words that are vowel-initial or vowel-final, as well as any
 %   words with three consonants in a cluster.
 

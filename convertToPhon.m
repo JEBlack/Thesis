@@ -1,6 +1,5 @@
 
-% Main file for converting symbolic phonologies to phonological feature
-% arrays
+% Main file for converting symbolic reps to phonological feature arrays
 
 clear;
 
