@@ -8,12 +8,10 @@ function rep = fPhon(word)
 
 %   Coding scheme derived from Harm & Seidenburg 1999.
 
-%   New Comment for git purposes
-
+    global phonRep
     
     %local variables
-    phonRep=readtable('phonRep.xlsx');
-     vowels=["IY","IH","EH","AE","AA","AO","OW","UH","UW","AH","ER","AW","EY","OY","AY"];
+    vowels=["IY","IH","EH","AE","AA","AO","OW","UH","UW","AH","ER","AW","EY","OY","AY"];
      
      if(isa(word,'table'))
          word=table2array(word);

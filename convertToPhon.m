@@ -4,7 +4,9 @@
 
 clear;
 
+global phonRep
 phonRep=readtable('phonRep.xlsx');
+global words
 words=readtable('newWords.xlsx');
 
 words=cleanUp(words); %remove any words that don't fit the criteria
