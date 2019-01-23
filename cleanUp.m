@@ -22,7 +22,7 @@ for i=1:size(words,1)
     word=strsplit(word,'.'); %break up letters, becomes cell array
     
     %exclude illegal words
-    if(ismember(word{1},vowels) || ismember(word{length(word)},vowels) || length(word)>5) 
+    if(ismember(word{1},vowels) || ismember(word{length(word)},vowels) || (length(word)==5 && ~ismember(word{3},vowels)) || length(word)>5) 
         continue
     end
 

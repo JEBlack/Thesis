@@ -10,7 +10,6 @@ function rep = fPhon(word)
 
     global phonRep
     
-    %local variables
     vowels=["IY","IH","EH","AE","AA","AO","OW","UH","UW","AH","ER","AW","EY","OY","AY"];
      
      if(isa(word,'table'))
