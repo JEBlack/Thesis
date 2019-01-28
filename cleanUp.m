@@ -11,22 +11,49 @@ function cleaned = cleanUp(words)
 
 
 vowels=["IY","IH","EH","AE","AA","AO","OW","UH","UW","AH","ER","AW","EY","OY","AY"];
+ovowels=['a','e','i','o','u','y'];
 
 ortho={};
 phono={};
 for i=1:size(words,1) 
-    word=words(i,2); % we care about the properties of the phonology
-    word=table2array(word);
-    word=word{1,:};
     
-    word=strsplit(word,'.'); %break up letters, becomes cell array
+    pword=words(i,2); % phonology
+    pword=table2array(pword);
+    pword=pword{1,:};
+    pword=strsplit(pword,'.'); %break up letters, becomes cell array
     
-    %exclude illegal words
-    if(ismember(word{1},vowels) || ismember(word{length(word)},vowels) || (length(word)==5 && ~ismember(word{3},vowels)) || length(word)>5) 
+    oword=words(i,1); %orthography
+    oword=table2array(oword);
+    oword=oword{1,:};
+     
+    
+    %exclude phonologies
+    if(ismember(pword{1},vowels) || ismember(pword{length(pword)},vowels) || (length(pword)==5 && ~ismember(pword{3},vowels)) || length(pword)>5) 
         continue
     end
-
-    ortho=[ortho,words{i,1}]; 
+       
+    
+    %exclude orthographies, vowel initial/final, longer than 6
+    if(ismember(oword(1),ovowels) || ismember(oword(length(oword)),ovowels) || length(oword)>6 || length(oword)<3) 
+        continue
+    end
+    
+    % other illegal orthographies: if 5 is vowel, then 4 must be vowel. If
+    % 2 is vowel, then 4 cannot be vowel
+    if(length(oword)>=5)
+        if((ismember(oword(5),ovowels) && ~ismember(oword(4),ovowels)) || (ismember(oword(2),ovowels) && ismember(oword(4),ovowels)))
+            continue
+        end 
+        %no three consonant clusters
+        if((~ismember(oword(3),ovowels) && ~ismember(oword(2),ovowels)) || (~ismember(oword(length(oword)-1),ovowels) && ~ismember(oword(length(oword)-2),ovowels)))
+            continue
+        end 
+    end 
+    
+ 
+    
+    %orthography should be lowercase
+    ortho=[ortho,lower(words{i,1})]; 
     phono=[phono,words{i,2}];
 end
     
