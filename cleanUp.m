@@ -48,6 +48,11 @@ for i=1:size(words,1)
         if((~ismember(oword(3),ovowels) && ~ismember(oword(2),ovowels)) || (~ismember(oword(length(oword)-1),ovowels) && ~ismember(oword(length(oword)-2),ovowels)))
             continue
         end 
+        %only two vowels
+        if((ismember(oword(2),ovowels) && ismember(oword(3),ovowels) && ismember(oword(4),ovowels)) || (ismember(oword(3),ovowels) && ismember(oword(4),ovowels) && ismember(oword(5),ovowels)))
+            continue
+        end 
+            
     end 
     
  

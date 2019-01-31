@@ -21,9 +21,9 @@ T=words(idxs,:);
 
 results = [];
 
-numOut=56; %number of output nodes
-numIn=156; %number of input nodes 
-n=.05; %learning rate
+numOut=156; %number of output nodes
+numIn=56; %number of input nodes 
+n=.3; %learning rate
 
 
 
@@ -39,11 +39,11 @@ W = (b-a).*rand(numIn,numOut) + a; %weights randomly generated between 0 and 0.2
 
 for i=1:10
     for idx=1:1000
-        element=T(idx,1); %input is the orthography
-        act=fOrth(element);
+        element=T(idx,2); %input is the phonology
+        act=fPhon(element);
 
         O=act*W; %calculate outputs
-        target=fPhon(words(idx,2));
+        target=fOrth(words(idx,1));
 
         d=target-O; 
         W=W+n*(d.'*act).';

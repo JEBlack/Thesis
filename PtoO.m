@@ -1,4 +1,4 @@
-function spelling = testPtoO(prep)
+function spelling = PtoO(prep)
 % Tests the network with a orthographic output
 %   Gives the spelling of the output
 %   Assumes the network has already been trained and the weights are
@@ -11,7 +11,7 @@ function spelling = testPtoO(prep)
     act=fPhon(prep);
     disp(size(act))
     disp(size(W))
-    O=act*W.';
+    O=act*W;
     O=logistic(O);
     spelling=freadO(O);
     
