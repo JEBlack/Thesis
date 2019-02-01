@@ -13,7 +13,6 @@ function spelling = PtoO(prep)
     disp(size(W))
     O=act*W.';
     O=logistic(O);
-    disp(O);
     spelling=freadO(O);
     
    

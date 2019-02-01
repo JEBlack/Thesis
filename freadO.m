@@ -4,7 +4,7 @@ function spelling = freadO(rep)
 
     spelling=[];
     
-    idx=find(rep<=.92);
+    idx=find(rep<=.98);
     rep(idx)=0;
 
 
