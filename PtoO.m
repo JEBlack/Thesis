@@ -9,11 +9,8 @@ function spelling = PtoO(prep)
     global W
 
     act=fPhon(prep);
-    disp(size(act))
-    disp(size(W))
     O=act*W.';
     O=logistic(O);
-    disp(O);
     spelling=freadO(O);
     
    

@@ -3,6 +3,9 @@ function cleaned = cleanUp(words)
 %   Deletes any words that are vowel-initial or vowel-final, as well as any
 %   words with three consonants in a cluster.
 
+%   Also removes illegal orthographies, shuch as three consonant clusters,
+%   more than two vowels, vowels in inappropriate places, etc
+
 %   Assumes words is a table with two columns, the first orthography and
 %   the second phonology. 
 
