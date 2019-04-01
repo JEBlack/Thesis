@@ -33,21 +33,65 @@ clear;
         T=words(idxs,:); % create training set with random words
         
         
+numHids = [50, 100, 156, 200, 250];
+lrates = [.001, .005, .01, .02];
+alphas = [0, 0.85, .9, .95];
+initials = [.01, .1, .3];
 
-    % Free Parameters
 
-        n=.01; % learning rate
-        alpha= 0.9; % momentum term
-        numOut=60; % number of output nodes, phon
-        numIn=156; % number of input nodes, ortho 
-        numHid=200; % number of hidden nodes
-        tSize=1000; % number of words in training set
+paramset = [ ];
+ 
+for hu  = 1:5
+    for mome = 1:4
+        for lrate = 1:4
+            for initial = 1:3
+                for rep = 1:5
+                paramset= [paramset; lrates(lrate), alphas(mome), numHids(hu), initials(initial)];
+                end
+            end 
+        end         
+    end
+end        
 
-        a = -0.25; %range of values for initial weights
-        b = 0.25;
+count=0;
+results=zeros(1200,9);
 
-        rng(1) %random number seed
-    
+
+for hu  = 1:5
+    for mome = 1:4
+        for lrate = 1:4
+            for initial = 1:3
+                for rep = 1:5
+                    count=count+1;
+                    params=paramset(count,:);
+
+                    n = params(1); % learning rate
+                    alpha = params(2); % momentum term
+                    numOut=60; % number of output nodes, phon
+                    numIn=156; % number of input nodes, ortho 
+                    numHid= params(3); % number of hidden nodes
+
+
+                    a = params(4); %range of values for initial weights
+                    a= -a;
+                    b = params(4);
+
+                    rng(1) %random number seed
+
+%     % Free Parameters
+% 
+%         n=.005; % learning rate
+%         alpha= 0.9; % momentum term
+%         numOut=60; % number of output nodes, phon
+%         numIn=156; % number of input nodes, ortho 
+%         numHid=50; % number of hidden nodes
+%         tSize=1000; % number of words in training set
+% 
+%         a = -0.2; %range of values for initial weights
+%         b = 0.2;
+% 
+%         rng(1) %random number seed
+%     
     % initialize all weight matrices
         W1 = (b-a).*rand(numIn,numHid) + a; 
         W2 = (b-a).*rand(numHid,numOut) + a; 

@@ -1,4 +1,4 @@
-function rep = fPhon(word)
+function rep = fPhon(word,cRep,vRep)
 %Converts a word to its phonological representation
 
 %   Can call with input as a table or as a char array, eg. fPhon(words(1,2))
@@ -9,8 +9,8 @@ function rep = fPhon(word)
 
 %   Coding scheme derived from Harm & Seidenburg 1999.
 
-    vRep = readtable('vRep.xlsx');
-    cRep = readtable('cRep.xlsx');
+%     vRep = readtable('vRep.xlsx');
+%     cRep = readtable('cRep.xlsx');
 
     
     vowels= vRep.Properties.VariableNames;

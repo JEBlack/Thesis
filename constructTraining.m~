@@ -1,0 +1,55 @@
+function [blockedC, blockedNC, interleaved] = constructTraining(words,wordsSize)
+
+setsize=12;
+
+ea=targetWords(words, wordsSize, 'ea', 'IY');
+    idx=randperm(height(ea),setsize);
+    eas=ea(idx,:);
+oa=targetWords(words, wordsSize, 'oa', 'OW');
+    idx=randperm(height(oa),setsize);
+    oas=oa(idx,:);
+oi=targetWords(words, wordsSize, 'oi', 'OY');
+    idx=randperm(height(oi),setsize);
+    ois=oi(idx,:);
+ai=targetWords(words, wordsSize, 'ai', 'EY');
+    idx=randperm(height(ai),setsize);
+    ais=ai(idx,:);
+oo=targetWords(words, wordsSize, 'oo', 'UW');
+    idx=randperm(height(oo),setsize);
+    oos=oo(idx,:);
+ou=targetWords(words, wordsSize, 'ou', 'AW');
+    idx=randperm(height(ou),setsize);
+    ous=ou(idx,:);
+
+blocksC=[ois,oos;eas,ais;oas,ous;ois,ais;eas,oas;ous,oos];
+%blocksNC=[{'oi','ea'},{'ai','oo'},{'ou','oa'},{'oi','oa'},{'ai','ou'},{'ea','oo'}];    
+    
+
+%blockedC
+els=[1,3,5,7,9,11];
+order=els(randperm(length(els)));
+blocks=[];
+for i = 1:6
+    set1=blocksC(order(i));
+    set2=blocksC(order(i));
+    block=table2array(createBlock(set1{1},set2{2}));
+    blocks=[blocks;block];
+end
+
+
+
+for i = 1:6
+    
+    
+end 
+
+
+
+
+
+%two random number sequences
+    
+
+
+end
+
