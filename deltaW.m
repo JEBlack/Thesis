@@ -77,44 +77,44 @@ clear;
 % results = [];
      
      
-            for i=1:200
-                for j=1:tSize
+for i=1:20
+    for j=1:tSize
 
-                    % Forward Pass
-                    idx=randi([1 tSize],1,1); %pick a random word from training set
-                    I=fOrth(T(idx,1)); %input is the orthography
-                    target=fPhon(T(idx,2)); %target is the phonology
-
-
-                    hid=newlogistic(I*W1); %calculate hidden units
-                    O=newlogistic(hid*W2+biasW);
+        % Forward Pass
+        idx=randi([1 tSize],1,1); %pick a random word from training set
+        I=fOrth(T(idx,1)); %input is the orthography
+        target=fPhon(T(idx,2)); %target is the phonology
 
 
-                    %Backward Pass
-
-                    % hid to out
-                    momentum.w2=alpha*delta.w2;
-                    err.out=(target-O).*logistic(hid*W2).*(1-logistic(hid*W2)).*2; 
-                    delta.w2=n*(hid'*err.out);
-                    W2=W2+delta.w2+momentum.w2; 
-
-                    % bias to out
-                    momentum.bias=alpha*delta.bias;
-                    err.bias=(target-O).*logistic(biasW).*(1-logistic(biasW)).*2; 
-                    delta.bias=n*(1.*err.bias);
-                    biasW=biasW+delta.bias+momentum.bias; 
+        hid=newlogistic(I*W1); %calculate hidden units
+        O=newlogistic(hid*W2+biasW);
 
 
-                    d=target-O; 
-                    biasW=biasW+n*(d.'*1).';
+        %Backward Pass
 
-                    % in to hid
-                    momentum.w1=alpha*delta.w1;
-                    err.hid=(err.out*W2').*logistic(I*W1).*(1-logistic(I*W1)).*2; %where errout*W2' is the difference between target and the actual
-                    delta.w1=n*(I'*err.hid);
-                    W1=W1+delta.w1+momentum.w1;
+        % hid to out
+        momentum.w2=alpha*delta.w2;
+        err.out=(target-O).*logistic(hid*W2).*(1-logistic(hid*W2)).*2; 
+        delta.w2=n*(hid'*err.out);
+        W2=W2+delta.w2+momentum.w2; 
 
-                end
+        % bias to out
+        momentum.bias=alpha*delta.bias;
+        err.bias=(target-O).*logistic(biasW).*(1-logistic(biasW)).*2; 
+        delta.bias=n*(1.*err.bias);
+        biasW=biasW+delta.bias+momentum.bias; 
+
+
+        d=target-O; 
+        biasW=biasW+n*(d.'*1).';
+
+        % in to hid
+        momentum.w1=alpha*delta.w1;
+        err.hid=(err.out*W2').*logistic(I*W1).*(1-logistic(I*W1)).*2; %where errout*W2' is the difference between target and the actual
+        delta.w1=n*(I'*err.hid);
+        W1=W1+delta.w1+momentum.w1;
+
+    end
 
     [percent, chooseResults]=chooseWordDriver();
     
