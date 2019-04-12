@@ -3,14 +3,6 @@ function [setCorrect,averageCorrect] = phonemesCorrectDriver(W1,W2,biasW,wordsSi
 %   Applied phonemesCorrect() to every word in set and return average #
 %   correct per word
 
-%     global words
-%     global wordsSize
-
-
-%    vRep = readtable('vRep.xlsx');
-%    cRep = readtable('cRep.xlsx');
-    
-%    phonRep=readtable('phonRep.xlsx');
     
     totalCorrect=zeros(wordsSize,5);
     for idx = 1:wordsSize %check every word

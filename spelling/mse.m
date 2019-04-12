@@ -1,4 +1,4 @@
-function meanMSE = mse(W1, W2, biasW,words,wordsSize)
+function meanMSE = mse(W1, W2, biasW,wordsSize,words,phonRep, vRep)
 %Calculate the mean of the mse of all words in the set. 
     
 %      global words
@@ -6,17 +6,18 @@ function meanMSE = mse(W1, W2, biasW,words,wordsSize)
     
     totalMSE=[];
     
+    
     for idx = 1:wordsSize
-        i=words(idx,1); %input and target
-        i=fOrth(i);
+        letters=words(idx,1); %input and target
+        letters=fOrth(letters);
         target=words(idx,2);
-        target=fPhon(target);
+        target=fPhon(target, phonRep,vRep);
         
         %calculate output
-        hid=newlogistic(i*W1);
-        out=newlogistic(hid*W2+biasW);
+        hid=newlogistic(letters*W1);
+        phon=newlogistic(hid*W2+biasW);
         
-        totalMSE=[totalMSE mean((target-out).^2)];
+        totalMSE=[totalMSE mean((target-phon).^2)];
     end
     
     meanMSE=mean(totalMSE);
