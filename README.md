@@ -7,11 +7,7 @@ updated regularly.
 
 That being said, there should be everything here (as of April 1) to construct the model and train it. 
 
-To train a normal model to read, download all the files, including the training words spreadseet and the sheets that 
-describe the distributed representations of the phonemes (phonRep, vRep, and cRep).
-
-Run the matlab file called Network. This will train the network. When it's done you will have two weight matrices, W1 and W2.
-It will also graph the percentage of words the model got right after each epoch, so you can watch it learn.
+The Network file contains the simple network with minimal testing code tacked on.
 
 The architecture of the network: 
 
