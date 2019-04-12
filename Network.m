@@ -106,9 +106,6 @@ for i=1:300
         biasW=biasW+delta.bias+momentum.bias; 
 
 
-%         d=target-O; 
-%         biasW=biasW+n*(d.'*1).';
-
         % in to hid
         momentum.w1=alpha*delta.w1;
         err.hid=(err.out*W2').*logistic(I*W1).*(1-logistic(I*W1)).*2; %where errout*W2' is the difference between target and the actual
